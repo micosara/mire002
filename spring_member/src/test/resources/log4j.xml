@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="kr.ac.sbs">
+		<level value="info" />
+	</logger>
+	
+	
+	
+	<!-- SQL문과 해당 SQL을 실행시키는데 수행된 시간 정보(milliseconds)를 포함한다. -->
+	<!-- <logger name="jdbc.sqltiming">
+		<level value="debug" />
+		<appender-ref ref="console"/>
+	</logger> -->
+
+	 <!-- ResultSet을 제외한 모든 JDBC 호출 정보를 로그로 남긴다. 
+	 많은 양의 로그가 생성되므로 특별히 JDBC 문제를 추적해야 할 필요가 
+	 있는 경우를 제외하고는 사용을 권장하지 않는다. -->
+	<!-- <logger name="jdbc.audit">
+		<level value="info" />		
+	</logger> -->
+	
+	 <!-- ResultSet을 포함한 모든 JDBC 호출 정보를 로그로 남기므로 
+	 매우 방대한 양의 로그가 생성된다. -->
+	<!-- <logger name="jdbc.resultSet">
+		<level value="info" />		
+	</logger> -->
+	
+	<!-- connection 정보 출력 -->
+	<!-- <logger name="jdbc.connection">
+		<level value="warn" />		
+	</logger> -->
+
+	<!-- SQL문만을 로그로 남기며, PreparedStatement일 경우 관련된
+	 argument 값으로 대체된 SQL문이 보여진다. -->
+	<logger name="jdbc.sqlonly">
+		<level value="info" />		
+	</logger>
+	
+	<!-- 트랜젝션 관련 로그 출력 -->	 
+	<logger name="org.springframework.jdbc.datasource">
+		<level value="debug" />		
+	</logger>
+	
+	<!-- <logger name="jdbc.sqltiming" additivity="false">
+		<level value="warn" />		
+	</logger> -->
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>

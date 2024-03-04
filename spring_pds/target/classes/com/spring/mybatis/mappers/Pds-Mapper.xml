@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Pds-Mapper">
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and title like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and writer like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and content like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'cw'.toString()">
+			and (
+			writer like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			writer like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+	
+	<select id="selectSearchPdsList" resultType="pds">
+		select
+		*
+		from
+		pds
+		where pno is not null  			  	
+		<include refid="search" />
+		order by pno desc
+	</select>
+	<select id="selectSearchPdsListCount"  resultType="int">
+		select
+		count(*)
+		from
+		pds
+		where pno is not null  			  	
+		<include refid="search" />
+	</select>
+	
+	<select id="selectPdsByPno"  parameterType="int" resultType="pds">
+		select * 
+		from pds 
+		where pno=#{pno}
+	</select>
+	
+	<select id="selectPdsSeqNext" resultType="int">
+		select pds_seq.nextval as pno from dual
+	</select>
+	
+	<insert id="insertPds" parameterType="pds">
+		insert 
+		into 
+		pds(pno,title,writer,content)
+		values
+		(#{pno},#{title},#{writer},#{content})
+	</insert>
+	
+	
+	<update id="increaseViewCnt" parameterType="int">
+		update 
+		pds 
+		set 
+		viewcnt=viewcnt+1 
+		where pno=#{pno}
+	</update>
+	
+	
+	
+	<update id="updatePds" parameterType="pds">
+		update 
+		pds
+		set 
+		title=#{title}, content=#{content}, updatedate=sysdate 
+		where pno=#{pno}
+	</update>
+	
+	<delete id="deletePds" parameterType="int">
+		delete 
+		from pds 
+		where pno=#{pno}
+	</delete>
+</mapper>

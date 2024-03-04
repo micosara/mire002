@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Menu-Mapper">
+	<select id="selectMainMenu" resultType="menu">
+		select *
+		from menu
+		where mCode like '%'||'0000'
+		order by mCode asc 
+	</select>
+	
+	<select id="selectSubMenu" resultType="menu">
+		select *
+		from menu
+		where upCode = #{mCode} and isNav=1
+	</select>
+	
+	<select id="selectMenuByMcode" resultType="menu">
+		select *
+		from menu
+		where mCode = #{mCode}
+	</select>
+	<select id="selectMenuByMname" resultType="menu">
+		select *
+		from menu
+		where mName = #{mName}
+	</select>
+</mapper>

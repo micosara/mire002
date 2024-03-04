@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- savedPath -->
+	
+	<!-- member.picture -->
+	<bean id="picturePath" class="java.lang.String">
+		<constructor-arg value="${savePath.member.picture}" />      
+	</bean>
+	
+	<!-- file upload -->
+	<bean id="fileUploadPath" class="java.lang.String">
+		<constructor-arg value="${savePath.pds}"/>
+	</bean>
+	
+	<!-- login user log path -->
+	<bean id="loginUserLogSavePath" class="java.lang.String">
+		<constructor-arg value="${savePath.login.user.log}" />
+	</bean>
+	 
+	<!-- error log -->
+	<bean id="errorLogPath" class="java.lang.String">
+		<constructor-arg value="${savePath.error.log}" />	
+	</bean>	
+	
+	
+	<!-- repository  -->
+	<bean id="memberDAO" 
+	      class="com.spring.dao.MemberDAOImpl"
+	      p:sqlSession-ref="sqlSession"
+	      />
+	<bean id="searchMemberDAO"
+	      class="com.spring.dao.SearchMemberDAOImpl"
+	      p:sqlSession-ref="sqlSession"
+	      />      
+	<!-- service -->
+	<bean id="memberService"
+	      class="com.spring.service.MemberServiceImpl"
+	      p:memberDAO-ref="memberDAO"
+	      />
+	<bean id="searchMemberService"
+		  class="com.spring.service.SearchMemberServiceImpl"  
+		  p:memberDAO-ref="memberDAO"
+		  p:searchMemberDAO-ref="searchMemberDAO"
+		  />         
+</beans>
+
+
+
+
+
+
