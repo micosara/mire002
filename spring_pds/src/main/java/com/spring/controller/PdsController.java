@@ -29,6 +29,9 @@ public class PdsController {
 	@Autowired
 	private PdsService pdsService;
 
+	@GetMapping("/main")
+	public void main() {}
+	
 	@GetMapping("/list")
 	public ModelAndView list(@ModelAttribute PageMaker pageMaker, ModelAndView mnv) throws Exception {
 		String url="/pds/list";

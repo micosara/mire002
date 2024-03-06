@@ -38,6 +38,9 @@ public class MemberController {
 	@Autowired
 	private SearchMemberService memberService;
 
+	@GetMapping("/main")
+	public void main() {}
+	
 	@GetMapping("/list")
 	public ModelAndView list(@ModelAttribute PageMaker pageMaker, ModelAndView mnv) throws Exception {
 		String url="/member/list";
