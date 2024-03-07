@@ -3,6 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
+
+<c:if test="${from eq 'regist' }">
+	<script>
+		alert("새글이 등록되었습니다.");
+		window.opener.location.reload();
+		window.close();
+	</script>
+</c:if>
+
 <%@ include file="/WEB-INF/views/modules/header.jsp" %>
 
     <!-- Content Header (Page header) -->
@@ -49,7 +59,7 @@
 										
 						<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${pageMaker.keyword }"/>
 						<span class="input-group-append">
-							<button class="btn btn-primary" type="button" id="searchBtn" data-card-widget="search" onclick="search_list(1);">
+							<button class="btn btn-primary" type="button" id="searchBtn" data-card-widget="search" onclick="searchList_go(1);">
 								<i class="fa fa-fw fa-search"></i>
 							</button>
 						</span>
@@ -90,6 +100,7 @@
 			</div>
 			<div class="card-footer">
 				<div style="display:${!empty noticeList ? 'visible':'none' };">
+					<%@ include file="/WEB-INF/views/modules/pagination.jsp" %>
 	    			
 	    		</div>
 
