@@ -41,10 +41,23 @@
 		where id=#{id}
 	</select>
 	
+	<select	id="selectAuthoritiesById" resultType="str">
+		select ad.role as authorities
+		from member m, authority a, authority_detail ad
+		where m.id=a.user_id and a.authority = ad.ano
+		      and m.id=#{id}
+	</select>
+	
+	
+	<insert id="insertAuthorities" >
+		insert into authority(no, user_id,authority)
+		values (auth_seq.nextval,#{id},#{authority})
+	</insert>
+	
 	<insert id="insertMember" parameterType="member">
 		insert into 
-		member(id, pwd, email, phone,picture,name,authority)
-		values(#{id}, #{pwd}, #{email}, #{phone},#{picture},#{name},#{authority})
+		member(id, pwd, email, phone,picture,name)
+		values(#{id}, #{pwd}, #{email}, #{phone},#{picture},#{name})
 	</insert>
 	<update id="updateMember" parameterType="member">
 		update member 

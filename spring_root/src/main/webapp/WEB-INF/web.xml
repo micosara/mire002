@@ -20,17 +20,24 @@
 	</listener>
 	
 	<filter>
-		<filter-name>LoginCheckFilter</filter-name>
-		<filter-class>com.spring.filter.LoginCheckFilter</filter-class>
-		<init-param>
-			<param-name>exclude</param-name>
-			<param-value>/common,/resources,/subMenu</param-value>
-		</init-param>
+		<filter-name>sessionExpiredCheckFilter</filter-name>
+		<filter-class>com.spring.filter.SessionExpiredCheckFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>LoginCheckFilter</filter-name>
+		<filter-name>sessionExpiredCheckFilter</filter-name>
+		<url-pattern>/common/loginExpired</url-pattern>
+	</filter-mapping>
+	
+			
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

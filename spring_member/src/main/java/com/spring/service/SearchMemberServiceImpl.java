@@ -18,10 +18,37 @@ public class SearchMemberServiceImpl extends MemberServiceImpl
 	@Override
 	public List<MemberVO> searchList(PageMaker pageMaker) throws SQLException {
 		
+		List<MemberVO> memberList = searchMemberDAO.selectSearchMemberList(pageMaker);
+		
+		if(memberList!=null) for(MemberVO member : memberList) {
+			member.setAuthorities(searchMemberDAO.selectAuthoritiesById(member.getId()));
+		}
+		
 		int totalCount = searchMemberDAO.selectSearchMemberListCount(pageMaker);
 		pageMaker.setTotalCount(totalCount);
-		return searchMemberDAO.selectSearchMemberList(pageMaker);
+		
+		return memberList;
 	}
+
+	@Override
+	public MemberVO detail(String id) throws SQLException {
+		MemberVO member = super.detail(id);
+		if(member!=null)
+			member.setAuthorities(searchMemberDAO.selectAuthoritiesById(id));
+		return member;
+	}
+
+	@Override
+	public void regist(MemberVO member) throws SQLException {
+		//super.regist(member);
+		searchMemberDAO.insertMember(member);
+		
+		if(member.getAuthorities().size()>0)for(String authority : member.getAuthorities()) {
+			searchMemberDAO.insertAuthorities(member.getId(), authority);
+		}
+	}
+	
+	
 	
 
 }

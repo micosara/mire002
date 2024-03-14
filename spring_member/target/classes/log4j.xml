@@ -43,14 +43,14 @@
 
 	<!-- SQL문만을 로그로 남기며, PreparedStatement일 경우 관련된
 	 argument 값으로 대체된 SQL문이 보여진다. -->
-	<logger name="jdbc.sqlonly">
+	<!-- <logger name="jdbc.sqlonly">
 		<level value="info" />		
-	</logger>
+	</logger> -->
 	
 	<!-- 트랜젝션 관련 로그 출력 -->	 
-	<logger name="org.springframework.jdbc.datasource">
+	<!-- <logger name="org.springframework.jdbc.datasource">
 		<level value="debug" />		
-	</logger>
+	</logger> -->
 	
 	<!-- <logger name="jdbc.sqltiming" additivity="false">
 		<level value="warn" />		

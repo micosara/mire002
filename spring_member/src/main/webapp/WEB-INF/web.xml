@@ -17,14 +17,23 @@
 	</listener>
 
 	<filter>
-		<filter-name>LoginCheckFilter</filter-name>
-		<filter-class>com.spring.filter.LoginCheckFilter</filter-class>
+		<filter-name>SecurityContextChainFilter</filter-name>
+		<filter-class>com.spring.filter.SecurityContextChainFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>LoginCheckFilter</filter-name>
+		<filter-name>SecurityContextChainFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

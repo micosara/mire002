@@ -35,6 +35,7 @@
 	<bean id="searchMemberDAO"
 	      class="com.spring.dao.SearchMemberDAOImpl"
 	      p:sqlSession-ref="sqlSession"
+	      p:searchDAOSqlSession-ref="sqlSession"
 	      />      
 	<!-- service -->
 	<bean id="memberService"

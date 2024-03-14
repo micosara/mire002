@@ -11,4 +11,9 @@ public interface SearchMemberDAO extends MemberDAO{
 	List<MemberVO> selectSearchMemberList(PageMaker pageMaker) throws SQLException;
 	
 	int selectSearchMemberListCount(PageMaker pageMaker)throws SQLException;
+	
+
+	List<String> selectAuthoritiesById(String id)throws SQLException;
+	void insertAuthorities(String id, String authority)throws SQLException;
+	
 }

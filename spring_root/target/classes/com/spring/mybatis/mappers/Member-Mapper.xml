@@ -9,4 +9,11 @@
 		from member
 	    where id=#{id}
 	</select>
+	
+	<select id="selectMemberAuthoritiesById" resultType="str">
+		select ad.role
+		from member m, authority  a, authority_detail ad
+		where m.id = a.user_id and a.authority = ad.ano and m.id=#{id}
+	</select>
 </mapper>
+

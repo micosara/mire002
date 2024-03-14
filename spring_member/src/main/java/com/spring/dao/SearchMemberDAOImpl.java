@@ -1,7 +1,9 @@
 package com.spring.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +15,7 @@ public class SearchMemberDAOImpl extends MemberDAOImpl
 								 implements SearchMemberDAO{
 
 	private SqlSession sqlSession;
-	public void setSqlSession(SqlSession session) {
+	public void setSearchDAOSqlSession(SqlSession session) {
 		this.sqlSession = session;
 	}
 	
@@ -33,6 +35,23 @@ public class SearchMemberDAOImpl extends MemberDAOImpl
 		return sqlSession.selectOne("Member-Mapper.selectSearchMemberListCount",pageMaker);
 	}
 
+	@Override
+	public List<String> selectAuthoritiesById(String id) throws SQLException {
+		List<String> authorities 
+			= sqlSession.selectList("Member-Mapper.selectAuthoritiesById",id);
+		return authorities;
+	}
+	
+	
+	
+	@Override
+	public void insertAuthorities(String id, String authority) throws SQLException {
+		Map<String,String> paramMap = new HashMap<String,String>();
+		paramMap.put("id",id);
+		paramMap.put("authority",authority);
+		sqlSession.insert("Member-Mapper.insertAuthorities",paramMap);
+		
+	}
 
 
 }

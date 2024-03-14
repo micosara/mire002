@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<beans:bean id="customAuthenticationProvider" 
+	            class="com.spring.security.CustomAuthenticationProvider"
+	            />
+
+	<!-- 인증 -->
+	<authentication-manager id="member_auth_manager">
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+	
+	<!-- 인허가 -->
+	<http pattern="/resources/**" security="none" />
+	<http use-expressions="true" pattern="/**"  
+				authentication-manager-ref="member_auth_manager">
+		<access-denied-handler error-page="/security/accessDenied" />
+	
+		<intercept-url pattern="/regist*" access="hasAnyRole('ROLE_ADMIN,CREATE_USER')" />
+		<intercept-url pattern="/modify*" access="hasRole('ROLE_MANAGER')" />
+		<intercept-url pattern="/remove*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/list*" access="isAuthenticated()" />
+		
+		<intercept-url pattern="/**" access="permitAll"/>
+		
+		<form-login login-page="/common/loginForm.do" />
+		<logout />
+		
+	</http>
+	
+	
+</beans:beans>

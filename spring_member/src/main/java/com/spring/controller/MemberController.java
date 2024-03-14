@@ -37,7 +37,7 @@ public class MemberController {
 
 	@Autowired
 	private SearchMemberService memberService;
-
+	
 	@GetMapping("/main")
 	public void main() {}
 	
@@ -79,7 +79,7 @@ public class MemberController {
 	@PostMapping(value = "/regist", produces = "text/plain;charset=utf-8")
 	public ModelAndView regist(MemberRegistCommand regCommand,ModelAndView mnv) {
 		String url = "/member/regist_success";
-
+			
 		try {
 			MultipartFile multi = regCommand.getPicture();
 			String fileName = savePicture(null, multi);
@@ -87,7 +87,7 @@ public class MemberController {
 			// DB 저장
 			MemberVO member = regCommand.toMemberVO();
 			member.setPicture(fileName);
-
+			
 			memberService.regist(member);
 
 		} catch (NotExistPictureFileException e) {

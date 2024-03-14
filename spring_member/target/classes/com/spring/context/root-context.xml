@@ -11,4 +11,5 @@
 	<import resource="./dataSource-context.xml"/>
 	<import resource="./application-context.xml"/>
 	<import resource="./aop-context.xml" />
+	<import resource="./security-context.xml" />
 </beans>

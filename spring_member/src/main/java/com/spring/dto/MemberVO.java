@@ -1,6 +1,7 @@
 package com.spring.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class MemberVO {
 
@@ -11,7 +12,7 @@ public class MemberVO {
 	private String email;  //이메일
 	private String picture; // 사진파일 경로/파일명
 	private Date regDate; // 등록일
-	private String authority; // 권한
+	private List<String> authorities; // 권한
 	private int enabled;   // 사용여부
 	private String register;//등록자
 	private String address;//주소
@@ -59,11 +60,12 @@ public class MemberVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public String getAuthority() {
-		return authority;
+	
+	public List<String> getAuthorities() {
+		return authorities;
 	}
-	public void setAuthority(String authority) {
-		this.authority = authority;
+	public void setAuthorities(List<String> authorities) {
+		this.authorities = authorities;
 	}
 	public int getEnabled() {
 		return enabled;

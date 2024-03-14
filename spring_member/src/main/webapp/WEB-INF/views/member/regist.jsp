@@ -31,7 +31,7 @@
   	</section>
 	<!-- Main content -->
 	<section class="content register-page">
-		<div class="register-box">
+		<div class="">
 			<div class="login-logo">
     			<a href=""><b>회원 등록</b></a>
   			</div>
@@ -40,7 +40,7 @@
 				<div class="register-card-body">
 					<form role="form" class="form-horizontal" action="regist" method="post" enctype="multipart/form-data">						
 						<div class="input-group mb-3">
-								<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;"></div>
+							<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;"></div>
 								<div class="mailbox-attachment-info" style="width:100%;">
 									<div class="input-group input-group-sm">
 										<label for="inputFile" class=" btn btn-warning btn-sm btn-flat input-group-addon">파일선택</label>
@@ -53,7 +53,7 @@
 						  <div class="form-group row">
 							 <label for="id" class="col-sm-3" style="font-size:0.9em;" >
 							 	<span style="color:red;font-weight:bold;">*</span>아이디</label>	
-							<div class="col-sm-9 input-group input-group-sm">
+							 <div class="col-sm-9 input-group input-group-sm">
 								<input name="id" 
 									onkeyup="this.value=this.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, &#39;&#39;);"
 								type="text" class="form-control" id="id" placeholder="13글자 영문자,숫자 조합">
@@ -82,15 +82,74 @@
 							
 						</div>		
 						<div class="form-group row">
-							<label for="authority" class="col-sm-3" style="font-size:0.9em;" >권 한</label>
-							<div class="col-sm-9">
-								<select name="authority" class="form-control" style="font-size:0.9em;">
-									<option value="ROLE_USER">사용자</option>
-									<option value="ROLE_MANAGER">운영자</option>
-									<option value="ROLE_ADMIN">관리자</option>
-								</select>
+							<label for="authority" class="col-sm-3" style="font-size:0.9em;" >직책권한</label>
+							<div class="col-sm-9 row">
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="role1" name="authorities" value="0003">
+										<label for="role1" class="custom-control-label">사용자</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="role2" name="authorities" value="0002">
+										<label for="role2" class="custom-control-label">운영자</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="role3" name="authorities" value="0003">
+										<label for="role3" class="custom-control-label">관리자</label>
+									</div>
+								</div>
 							</div>
-						</div>					
+						</div>
+						<div class="form-group row">
+							<label for="authority" class="col-sm-3" style="font-size:0.9em;" >회원관리권한</label>
+							<div class="col-sm-9 row">
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="user1" name="authorities" value="1100">
+										<label for="user1" class="custom-control-label">등록</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="user2" name="authorities" value="1200">
+										<label for="user2" class="custom-control-label">수정</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="user3" name="authorities" value="1300">
+										<label for="user3" class="custom-control-label">삭제</label>
+									</div>
+								</div>
+							</div>
+						</div>		
+						<div class="form-group row">
+							<label for="authority" class="col-sm-3" style="font-size:0.9em;" >공지관리권한</label>
+							<div class="col-sm-9 row">
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="notice1" name="authorities" value="2100">
+										<label for="notice1" class="custom-control-label">등록</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="notice2" name="authorities" value="2200">
+										<label for="notice2" class="custom-control-label">수정</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox" id="notice3" name="authorities" value="2300">
+										<label for="notice3" class="custom-control-label">삭제</label>
+									</div>
+								</div>
+							</div>
+						</div>									
 						<div class="form-group row">
 							<label for="email" class="col-sm-3" style="font-size:0.9em;">이메일</label>
 							<div class="col-sm-9 input-group-sm">
@@ -98,24 +157,24 @@
 										placeholder="example@naver.com">
 							</div>
 						</div>
-						<div class="form-group row">
-							<label for="phone" class="col-sm-3 control-label">전화번호</label>
-							<div class="col-sm-9">	
-								<div class="input-group-sm">
-									<select style="width:75px;" name="phone" id="phone" class="form-control float-left">
-										<option value="">-선택-</option>
-										<option value="010">010</option>
-										<option value="011">011</option>
-										<option value="017">017</option>
-										<option value="018">018</option>
-									</select>							
-									<label class="float-left" style="padding: 0; text-align: center;">&nbsp;-&nbsp;</label>										
-									<input style="width:68px;" name="phone" type="text" class="form-control float-left" />
-									<label class="float-left" style="padding: 0; text-align: center;">&nbsp;-</label>
-									<input style="width:68px;" name="phone" type="text" class="form-control float-right" />						
-								</div>
-							</div>
-						</div>
+						 <div class="form-group row">
+		                     <label for="phone" class="col-sm-3 control-label">전화번호</label>
+		                     <div class="col-sm-9">   
+		                        <div class="input-group-sm">
+		                           <select style="width:90px;" name="phone" id="phone" class="form-control float-left">
+		                              <option value="">-선택-</option>
+		                              <option value="010">010</option>
+		                              <option value="011">011</option>
+		                              <option value="017">017</option>
+		                              <option value="018">018</option>
+		                           </select>                     
+		                           <label class="float-left" style="padding: 0; text-align: center;">&nbsp;&nbsp;-&nbsp;&nbsp;</label>                              
+		                           <input style="width:87px;" name="phone" type="text" class="form-control float-left" />
+		                           <label class="float-left" style="padding: 0; text-align: center;">&nbsp;&nbsp;-&nbsp;&nbsp;</label>
+		                           <input style="width:87px;" name="phone" type="text" class="form-control float-left" />                  
+		                        </div>
+		                     </div>
+		                  </div>
 						
 						<div class="card-footer">
 							<div class="row">								
@@ -125,7 +184,7 @@
 							 	
 							 	<div class="col-sm-6">
 									<button type="button" id="cancelBtn" onclick="CloseWindow();"
-										class="btn btn-default float-right">&nbsp;&nbsp;&nbsp;취 &nbsp;&nbsp;소&nbsp;&nbsp;&nbsp;</button>
+										class="btn btn-default float-right">취 &nbsp;&nbsp;소</button>
 								</div>
 							
 							</div>

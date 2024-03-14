@@ -1,6 +1,7 @@
 package com.spring.command;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,7 +15,7 @@ public class MemberRegistCommand {
 	private String[] phone; //전화번호
 	private String email;  //이메일
 	private MultipartFile picture; // 사진파일 경로/파일명
-	private String authority; // 권한
+	private List<String> authorities; // 권한
 	public String getId() {
 		return id;
 	}
@@ -51,18 +52,17 @@ public class MemberRegistCommand {
 	public void setPicture(MultipartFile picture) {
 		this.picture = picture;
 	}
-	public String getAuthority() {
-		return authority;
-	}
-	public void setAuthority(String authority) {
-		this.authority = authority;
-	}
 	
-	
+	public List<String> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(List<String> authorities) {
+		this.authorities = authorities;
+	}
 	public MemberVO toMemberVO() {
 		 MemberVO member = new MemberVO();
 		 member.setEmail(email);
-		 member.setAuthority(authority);
+		 member.setAuthorities(authorities);
 		 member.setEnabled(1);
 		 member.setId(id);
 		 member.setName(name);
