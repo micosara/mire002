@@ -47,6 +47,14 @@ public class SearchMemberServiceImpl extends MemberServiceImpl
 			searchMemberDAO.insertAuthorities(member.getId(), authority);
 		}
 	}
+
+	@Override
+	public void modifyAuthority(String id,List<String> authorities) throws SQLException {
+		searchMemberDAO.deleteAllAuthorityById(id);
+		if(authorities.size()>0)for(String authority:authorities) {
+			searchMemberDAO.insertAuthorities(id, authority);
+		}
+	}
 	
 	
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
 
@@ -28,7 +30,7 @@
     <!-- Main content -->
     <section class="content register-page">       
       <div class="register-box">         
-          <form role="form" class="form-horizontal"  method="post">
+          <form role="form" class="form-horizontal"  method="post" onsubmit="return false;">
              <div class="register-card-header" >
                 <h1 class="text-center">회원 상세보기</h1>
              </div>
@@ -70,17 +72,26 @@
                 <div class="card-footer" style="padding:5px 0;" >
                       <div class="row">
                          <div class="col-sm-4 text-center">
-                            <button type="button" onclick="location.href='modifyForm?id=${member.id}';" id="modifyBtn" class="btn btn-warning ">수 정</button>
+                         	<c:if test="${loginUser.id eq member.id }">
+                            	<button type="button" onclick="location.href='modifyForm?id=${member.id}';" id="modifyBtn" class="btn btn-warning ">수 정</button>
+                         	</c:if>
                          </div>
                       
                          <div class="col-sm-4 text-center">
-                            <button type="button" onclick="location.href='remove?id=${member.id}';" id="deleteBtn" class="btn btn-danger" >삭 제</button>
+                         	<sec:authorize access="hasRole('ROLE_ADMIN')">
+                           	 <button type="button" onclick="location.href='remove?id=${member.id}';" id="deleteBtn" class="btn btn-danger" >삭 제</button>
+                       		</sec:authorize>
                          </div>
                          
                          <div class="col-sm-4 text-center">
                            <button type="button" id="listBtn" onclick="CloseWindow();" class="btn btn-primary pull-right">닫 기</button>
                         </div>
-                       </div>     
+                     </div>  
+                     <sec:authorize access="hasRole('ROLE_SYSTEM')">
+                   		<hr/>
+                     	<button type="button" class="btn btn-primary col-sm-12" 
+                     		onclick="OpenWindow('authority/modifyForm.do?id=${member.id}','권한수정','700','500');">권한 수정</button>
+                     </sec:authorize>     
                 </div>
               </form>
            </div>

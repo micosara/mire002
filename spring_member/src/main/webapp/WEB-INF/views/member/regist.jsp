@@ -98,7 +98,7 @@
 								</div>
 								<div class="col-sm-4">
 									<div class="custom-control custom-checkbox">
-										<input class="custom-control-input" type="checkbox" id="role3" name="authorities" value="0003">
+										<input class="custom-control-input" type="checkbox" id="role3" name="authorities" value="0001">
 										<label for="role3" class="custom-control-label">관리자</label>
 									</div>
 								</div>

@@ -28,6 +28,16 @@
 	
 	<context:component-scan base-package="com.spring.controller" />
 	
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/modify*"/>
+			<beans:bean class="com.spring.interceptor.PrivateCheckInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
+
+
+
+
+

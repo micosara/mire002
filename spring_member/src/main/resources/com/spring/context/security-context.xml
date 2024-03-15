@@ -21,9 +21,11 @@
 				authentication-manager-ref="member_auth_manager">
 		<access-denied-handler error-page="/security/accessDenied" />
 	
-		<intercept-url pattern="/regist*" access="hasAnyRole('ROLE_ADMIN,CREATE_USER')" />
-		<intercept-url pattern="/modify*" access="hasRole('ROLE_MANAGER')" />
+		<intercept-url pattern="/authority/**" access="hasRole('ROLE_SYSTEM')" />
+		<intercept-url pattern="/regist*" access="hasAnyRole('ROLE_SYSTEM,CREATE_USER')" />
+		<intercept-url pattern="/modify*" access="isAuthenticated()" />
 		<intercept-url pattern="/remove*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/detail*" access="isAuthenticated()" />
 		<intercept-url pattern="/list*" access="isAuthenticated()" />
 		
 		<intercept-url pattern="/**" access="permitAll"/>

@@ -71,23 +71,6 @@
 								value="${member.name }" />
 						</div>
 					</div>
-
-
-					<div class="form-group row">
-						<label for="authority" class="col-sm-3 control-label text-center">권
-							한</label>
-						<div class="col-sm-9">
-							<select name="authority" class="form-control">
-								<option ${member.authority eq 'ROLE_USER' ? 'selected' : '' }
-									value="ROLE_USER">사용자</option>
-								<option ${member.authority eq 'ROLE_MANAGER' ? 'selected' : '' }
-									value="ROLE_MANAGER">운영자</option>
-								<option ${member.authority eq 'ROLE_ADMIN' ? 'selected' : '' }
-									value="ROLE_ADMIN">관리자</option>
-							</select>
-						</div>
-					</div>
-
 					<div class="form-group row">
 						<label for="email" class="col-sm-3 control-label text-center">이메일</label>
 

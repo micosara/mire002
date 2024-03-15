@@ -53,5 +53,11 @@ public class SearchMemberDAOImpl extends MemberDAOImpl
 		
 	}
 
+	@Override
+	public void deleteAllAuthorityById(String id) throws SQLException {
+		sqlSession.delete("Member-Mapper.deleteAllAuthorityById",id);
+		
+	}
+
 
 }

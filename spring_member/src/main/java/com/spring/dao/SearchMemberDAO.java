@@ -15,5 +15,6 @@ public interface SearchMemberDAO extends MemberDAO{
 
 	List<String> selectAuthoritiesById(String id)throws SQLException;
 	void insertAuthorities(String id, String authority)throws SQLException;
+	void deleteAllAuthorityById(String id)throws SQLException;
 	
 }

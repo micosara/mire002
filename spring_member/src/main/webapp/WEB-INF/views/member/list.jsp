@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="sec"  uri="http://www.springframework.org/security/tags" %>
 
 <%@ include file="/WEB-INF/views/module/header.jsp" %>
 
@@ -36,7 +36,9 @@
    	<section class="content">
    		<div class="card">
    			<div class="card-header with-border">
-   				<button type="button" class="btn btn-primary" onclick="OpenWindow('registForm','회원등록',700,800);" >회원등록</button>
+   				<sec:authorize access="hasAnyRole('ROLE_ADMIN,CREATE_USER')">
+   					<button type="button" class="btn btn-primary" onclick="OpenWindow('registForm','회원등록',700,800);" >회원등록</button>
+   				</sec:authorize>
    				<div id="keyword" class="card-tools" style="width:550px;">
    					 <div class="input-group row">
    					 	<!-- search bar -->

@@ -54,6 +54,12 @@
 		values (auth_seq.nextval,#{id},#{authority})
 	</insert>
 	
+	<delete id="deleteAllAuthorityById" >
+		delete
+		from authority
+		where user_id = #{id} and authority!='0000'
+	</delete>
+	
 	<insert id="insertMember" parameterType="member">
 		insert into 
 		member(id, pwd, email, phone,picture,name)

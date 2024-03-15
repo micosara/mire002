@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -233,4 +235,39 @@ public class MemberController {
 		mnv.setViewName(url);
 		return mnv;
 	}
+	
+	@GetMapping("/authority/modifyForm")
+	public String modifyAuthorityForm(String id,Model model)throws Exception {
+		String url = "/authority/modifyForm";
+		MemberVO member = memberService.detail(id);
+		
+		model.addAttribute("member",member);
+		return url;
+	}
+	
+	@PostMapping("/authority/modify")
+	public String modify(String id, String[] authorities)throws SQLException{
+		String url="/authority/success";
+		
+		
+		
+		memberService.modifyAuthority(id, Arrays.asList(authorities));
+		
+		return url;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

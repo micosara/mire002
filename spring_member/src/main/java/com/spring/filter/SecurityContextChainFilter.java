@@ -27,49 +27,41 @@ public class SecurityContextChainFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpSession session = httpReq.getSession();
 		SecurityContext context = (SecurityContext) session
-		  .getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
-		
+				.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+
 		UsernamePasswordAuthenticationToken auth = null;
-		
+
 		String login_id = (String) request.getServletContext().getContext("/").getAttribute("loginUser");
 		if (login_id == null) {
 			session.invalidate();
 			chain.doFilter(request, response);
 			return;
 		}
-		
-		
-		if (context == null) {
-			context = SecurityContextHolder.getContext();
 
-			ApplicationContext ctx 
-			= new GenericXmlApplicationContext("classpath:com/spring/context/root-context.xml");
-			SearchMemberService service = ctx.getBean("searchMemberService", 
-					SearchMemberService.class);
-			try {
-				MemberVO member = service.detail(login_id);
-				User user = new User(member);
-				auth = new UsernamePasswordAuthenticationToken(member.getId(), member.getPwd(),
-						user.getAuthorities());
-				auth.setDetails(user);
+		context = SecurityContextHolder.getContext();
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
+		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:com/spring/context/root-context.xml");
+		SearchMemberService service = ctx.getBean("searchMemberService", SearchMemberService.class);
+		MemberVO member = null;
+		try {
+			member = service.detail(login_id);
+			User user = new User(member);
+			auth = new UsernamePasswordAuthenticationToken(member.getId(), member.getPwd(), user.getAuthorities());
+			auth.setDetails(user);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		context.setAuthentication(auth);
-		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, 
-				context);
-		
-		chain.doFilter(request, response);
-		
 
-		
+		context.setAuthentication(auth);
+		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, context);
+		session.setAttribute("loginUser",member);	
+		chain.doFilter(request, response);
+
 	}
 
 }
