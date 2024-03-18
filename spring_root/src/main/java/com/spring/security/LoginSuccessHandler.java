@@ -25,6 +25,11 @@ public class LoginSuccessHandler  extends SavedRequestAwareAuthenticationSuccess
 		this.loginUserLogSavePath = path;
 	}
 	
+	String saveFileName;
+	public void setLoginUserLogSaveFileName(String saveFileName) {
+		this.saveFileName = saveFileName;
+	}
+	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, 
 										HttpServletResponse response,
@@ -43,7 +48,7 @@ public class LoginSuccessHandler  extends SavedRequestAwareAuthenticationSuccess
 		ServletContext ctx = request.getServletContext();
 		ctx.setAttribute("loginUser", loginUser.getId());
 		
-		String saveFileName = "login_user_log.csv";
+		
 		//로그인 정보를 스트링으로 저장.
 		String tag ="[login:user]";
 		String log =tag

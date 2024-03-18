@@ -2,8 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+	<bean id="loginUserLogPath" 
+		  class="java.lang.String"
+		  c:original="${saved.login.user.log.path}"
+		  />
+	<bean id="loginUserLogFileName" 
+		  class="java.lang.String"
+		  c:original="${saved.login.user.log.fileName}"
+		  />
 
 	<bean id="memberDAO"
 	      class="com.spring.dao.MemberDAOImpl"
@@ -13,6 +23,12 @@
 	      class="com.spring.dao.MenuDAOImpl"
 	      p:sqlSession-ref="sqlSession"
 		  />	
+	<bean id="loginUserLogDAO"
+	      class="com.spring.dao.LoginUserLogDAOImpl"
+	      p:sqlsession-ref="sqlSession" 
+	/>
+	
+	
 	
 	<bean id="memberService"
 	      class="com.spring.service.MemberServiceImpl"
