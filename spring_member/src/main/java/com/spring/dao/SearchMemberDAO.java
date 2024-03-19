@@ -17,4 +17,8 @@ public interface SearchMemberDAO extends MemberDAO{
 	void insertAuthorities(String id, String authority)throws SQLException;
 	void deleteAllAuthorityById(String id)throws SQLException;
 	
+	// 회원정보 조회
+	MemberVO selectMemberByPicture(String picture) throws SQLException;
+	
+	
 }

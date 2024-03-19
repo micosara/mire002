@@ -60,4 +60,11 @@ public class SearchMemberDAOImpl extends MemberDAOImpl
 	}
 
 
+	@Override
+	public MemberVO selectMemberByPicture(String picture) throws SQLException {
+		MemberVO member=null;		
+		member = sqlSession.selectOne("Member-Mapper.selectMemberByPicture",picture);		
+		return member;
+	}
+
 }
