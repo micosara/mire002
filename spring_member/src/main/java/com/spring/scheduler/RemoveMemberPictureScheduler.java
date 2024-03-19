@@ -21,7 +21,11 @@ public class RemoveMemberPictureScheduler {
 
 		if (files != null)
 			for (File file : files) {
-				System.out.println(file.getName());
+				//System.out.println(file.getName());
+				if(memberDAO.selectMemberByPicture(file.getName())==null) {
+					file.delete();
+					System.out.println("delete file : "+file.getName());
+				}
 			}
 
 	}

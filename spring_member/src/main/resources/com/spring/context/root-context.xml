@@ -12,4 +12,5 @@
 	<import resource="./application-context.xml"/>
 	<import resource="./aop-context.xml" />
 	<import resource="./security-context.xml" />
+	<import resource="./task-context.xml" />
 </beans>
