@@ -67,7 +67,8 @@
 				</div>			
 			</div>
 			<div class="card-body">
-				<table class="table table-bordered text-center">
+				<table class="table table-bordered table-striped text-center"  id="noticeTable" >
+					<thead>
 					<tr style="font-size:0.95em;">
 						<th style="width:10%;">번 호</th>
 						<th style="width:40%;">제 목</th>
@@ -76,6 +77,8 @@
 						<th>등록일</th>
 						<th style="width:10%;">조회수</th>
 					</tr>	
+					</thead>
+					<tbody>
 					<c:if test="${empty noticeList}">
 						<td colspan="6">해당내용이 없습니다.</td>
 					</c:if>
@@ -95,7 +98,8 @@
 							</td>
 							<td><span class="badge bg-red">${notice.viewcnt }</span></td>
 						</tr>
-					</c:forEach>	
+					</c:forEach>
+					</tbody>	
 				</table>
 			</div>
 			<div class="card-footer">
@@ -108,5 +112,34 @@
 		</div>
 	</section>
 
+<script>
+window.onload=function(){
+	$("#noticeTable").DataTable({
+		"paging": false,
+	    "searching": false,
+	    "ordering": true,
+	    "info": false,
+    	"responsive": true, 
+    	"lengthChange": true, 
+    	"autoWidth": false,
+    	"buttons": [ {
+    		extend: 'csv',
+            charset: 'utf-8',
+            bom: true
+    	}, "excel", "pdf", "print"]
+  	}).buttons().container().appendTo('#noticeTable_wrapper .col-md-6:eq(0)');
+}
+</script>
 
-<%@ include file="/WEB-INF/views/modules/footer.jsp" %>
+<%@ include file="/WEB-INF/views/modules/dataTable_footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
