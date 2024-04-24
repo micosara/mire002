@@ -122,7 +122,7 @@ window.onload=function(){
     	"responsive": true, 
     	"lengthChange": true, 
     	"autoWidth": false,
-    	"buttons": [ {
+    	"buttons": ["copy", {
     		extend: 'csv',
             charset: 'utf-8',
             bom: true
